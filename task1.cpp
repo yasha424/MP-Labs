@@ -30,16 +30,20 @@ int main() {
 
             int i = 0;
 
+            string tmpWord;
             processWord:
                 if (word[i] != '\0') {
                     if (word[i] >= 'A' && word[i] <= 'Z') {
                         word[i] += 32;
-                    } else if (word[i] <= '@') {
-                        word[i] = '\0';
+                    }
+
+                    if (word[i] >= 'a' && word[i] <= 'z') {
+                        tmpWord += word[i];
                     }
                     i++;
                     goto processWord;
                 }
+            word = tmpWord;
 
             int stopWord = 0;
             checkIsStopWord:
@@ -96,7 +100,7 @@ int main() {
         if (i + 1 < countOfWords) {
             int j = 0;
             innerCycle:
-                if (j + 1 < countOfWords) {
+                if (j + 1 + i < countOfWords) {
                     if (words[j].count < words[j + 1].count){
                         Word tmpWord = words[j];
                         words[j] = words[j + 1];

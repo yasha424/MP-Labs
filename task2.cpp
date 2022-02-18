@@ -76,7 +76,6 @@ int main() {
 			checkIsStopWord:
                 if (stopWord < countOfStopWords) {
                     if (word == stopWords[stopWord]) {
-						// cout << "found" << endl;
 
 						if (line[end] == '\0') {
 			                goto readText;
@@ -142,7 +141,7 @@ int main() {
         if (i < countOfWords) {
             int j = 0;
             innerLoop:
-                if (j < countOfWords - 1) {
+                if (j + 1 + i < countOfWords) {
                     if (words[j].word > words[j + 1].word) {
                         Word tmpWord = words[j];
                         words[j] = words[j + 1];
@@ -155,20 +154,22 @@ int main() {
             goto outerLoop;
         }
 
+	ofstream out("task2_output.txt");
     i = 0;
     outerPrintLoop:
         if (i < countOfWords) {
-            cout << words[i].word << " -->";
+            out << words[i].word << " -->";
             int j = 0;
             innerPrintLoop:
                 if (j < words[i].count) {
-                    cout << " " << words[i].pages[j];
+                    out << " " << words[i].pages[j];
                     j++;
                     goto innerPrintLoop;
                 }
-            cout << endl;
+            out << endl;
             i++;
             goto outerPrintLoop;
         }
+	out.close();
 	input.close();
 }

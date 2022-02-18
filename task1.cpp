@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 struct Word {
@@ -9,6 +10,7 @@ struct Word {
 };
 
 int main() {
+    double start = clock();
     ifstream input("input.txt");
 
     string stopWords[] = {
@@ -25,7 +27,7 @@ int main() {
 
     string word;
     readText:
-        if ((input >> word)) {
+        if (input >> word) {
 
             int i = 0;
 
@@ -117,4 +119,5 @@ int main() {
             i++;
             goto showWords;
         }
+    cout << "\nElapsed time: " << (clock() - start) / 1000000 << endl;
 }

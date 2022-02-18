@@ -10,7 +10,6 @@ struct Word {
 };
 
 int main() {
-    double start = clock();
     ifstream input("input.txt");
 
     string stopWords[] = {
@@ -92,7 +91,6 @@ int main() {
             goto readText;
         }
 
-    // bubble sort
     int i = 0;
     outerCycle:
         if (i + 1 < countOfWords) {
@@ -119,5 +117,4 @@ int main() {
             i++;
             goto showWords;
         }
-    cout << "\nElapsed time: " << (clock() - start) / 1000000 << endl;
 }

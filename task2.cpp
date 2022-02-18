@@ -30,7 +30,7 @@ int main() {
 
 	    if (getline(input, line)) {
 		    currentLineNumber++;
-			// cout << line << " --" << currentLineNumber << endl;
+
             if (line == "") { // i.e line is empty
                 goto readText;
             }
@@ -38,7 +38,7 @@ int main() {
 		    int start = 0, end = 0;
 
 	        processWords:
-				// end++;
+
             increaseEnd:
                 if (line[end] != ' ' && line[end] != '\0') {
                     end++;
@@ -47,25 +47,13 @@ int main() {
 
             string word;
             int length = 0;
-			// cout << start << " -- " << end << endl;
             makeWord:
-                if (start < end /*&& line[start] <= 'z' && line[start] >= 'A'*/) {
+                if (start < end) {
                     word += line[start];
                     length++;
                     start++;
                     goto makeWord;
                 }
-
-			// if (word.empty()) {
-			//
-			// }
-// start == end
-            // if (length < 3) {
-            //     end++;
-			// 	start = end;
-            //     goto processWords;
-            // }
-			// cout << word << " -" << currentLineNumber << endl;
 
             int i = 0;
 			string tmpWord;
@@ -84,7 +72,6 @@ int main() {
 
 			word = tmpWord;
             int stopWord = 0;
-			// cout << word << " -" << currentLineNumber << endl;
 
 			checkIsStopWord:
                 if (stopWord < countOfStopWords) {
@@ -101,7 +88,7 @@ int main() {
                     stopWord++;
                     goto checkIsStopWord;
                 }
-			// cout << word << " -" << currentLineNumber << endl;
+
             int j = 0;
             bool isFound = false;
             findWord:
@@ -116,7 +103,7 @@ int main() {
                     j++;
                     goto findWord;
                 }
-	//
+
             if (countOfWords + 1 >= sizeOfArray && !isFound) {
                 sizeOfArray *= 2;
                 Word *tmpWords = new Word[sizeOfArray];
@@ -132,7 +119,7 @@ int main() {
                 delete[] words;
                 words = tmpWords;
             }
-	//
+
             if (!isFound && length > 2) {
                 words[countOfWords].word = word;
                 words[countOfWords].count = 1;
@@ -140,17 +127,16 @@ int main() {
 																			/ SIZE_OF_PAGE;
                 countOfWords++;
             }
-	//
+
             if (line[end] == '\0') {
                 goto readText;
             }
-	//
 
             end++;
 			start = end;
             goto processWords;
         }
-	//
+
     int i = 0;
     outerLoop:
         if (i < countOfWords) {
@@ -168,7 +154,6 @@ int main() {
             i++;
             goto outerLoop;
         }
-	//
 
     i = 0;
     outerPrintLoop:
@@ -185,6 +170,5 @@ int main() {
             i++;
             goto outerPrintLoop;
         }
-	//
 	input.close();
 }
